@@ -23,7 +23,15 @@ public class CustomerView implements Serializable{
     private CustomerController cont;
     
     private String username;
+    private boolean signedIn;
 
+    public boolean isSignedIn() {
+        return signedIn;
+    }
+
+    public void setSignedIn(boolean signedIn) {
+        this.signedIn = signedIn;
+    }
     public String getUsername() {
         return username;
     }
@@ -48,9 +56,10 @@ public class CustomerView implements Serializable{
     }
     
     public boolean login(){
-        return cont.login(username, password);
+        return signedIn = cont.login(username, password);
     }
     public void logout(){
+        signedIn = false;
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
     }
     

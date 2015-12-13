@@ -6,56 +6,22 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <h:head>
-        <style>
-            #converter {
-                position:fixed;
-                top: 50%;
-                left: 50%;
-                width:30em;
-                height:18em;
-                margin-top: -9em; /*set to a negative number 1/2 of your height*/
-                margin-left: -15em; /*set to a negative number 1/2 of your width*/
-                background-color: #FFFFFF;
-            }
-            #picture {
-                position:fixed;
-                top: 18%;
-                left: 38%;
-                width:30em;
-                height:18em;
-                margin-top: -9em; /*set to a negative number 1/2 of your height*/
-                margin-left: -15em; /*set to a negative number 1/2 of your width*/
-                background-color: #FFFFFF;
-            }
-        </style>
-        <title>ID2212 Network programming with Java Homework 4</title>
+    
+        <title>ID2212 Network programming project</title>
     </h:head>
     <h:body>
-        <div id="converter"> 
-            <p><b>Welcome to the SUPER RICH exchange market!</b></p>
-            <p>Select currency to buy and pay with</p>
-            <f:view id="converter">
+         Login:
+         <f:view>
                 <h:form>
-                    Buy:
-                    <h:selectOneMenu value="#{currencyView.toCurrency}">
-                        <c:forEach items="#{currencyView.currencies}" var="currency">
-                            <f:selectItem itemValue="#{currency.id}" itemLabel="#{currency.id}" />  
-                        </c:forEach>             
-                    </h:selectOneMenu>
-                    Pay with:
-                    <h:inputText value="#{currencyView.amount}"></h:inputText>
-                    <h:selectOneMenu value="#{currencyView.fromCurrency}">
-                        <c:forEach items="#{currencyView.currencies}" var="currency">
-                            <f:selectItem itemValue="#{currency.id}" itemLabel="#{currency.id}" />  
-                        </c:forEach>             
-                    </h:selectOneMenu>
-                    <h:commandButton action="#{currencyView.convertCurrency}" value="BUY NOW"  />
+                    Username:                    
+                    <h:inputText value="#{customerview.username}"></h:inputText>
+                    Password:
+                    <h:inputText value="#{customerview.password}"></h:inputText>
+                    <h:commandButton action="#{customerview.login()}" value="Login"  />
                 </h:form>
             </f:view>
-            <br/>
-            <p>Amount bought: #{currencyView.convertedValue} </p>
-        </div>
-        <div id="picture"><h:graphicImage library="images" name="superrich.jpg" /></div>
+        
+        
     </h:body>
 </html>
 

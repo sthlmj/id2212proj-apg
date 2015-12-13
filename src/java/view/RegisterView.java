@@ -25,6 +25,16 @@ public class RegisterView {
     private String username;
     private String password; 
 
+    private boolean success;
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+    
     public String getUsername() {
         return username;
     }
@@ -47,8 +57,9 @@ public class RegisterView {
         cont = new CustomerController();
     }
     
-    public boolean register(){     
-       return cont.register(username, password);
+    public boolean register(){ 
+
+       return success = cont.register(username, password);
     }
     
     
