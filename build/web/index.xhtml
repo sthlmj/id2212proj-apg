@@ -12,15 +12,16 @@
     <h:body>
          Login:
          <f:view>
-                <h:form>
+                <h:form id="loginCredentials">
                     Username:                    
-                    <h:inputText value="#{customerview.username}"></h:inputText>
+                    <h:inputText id="username" value="#{customerview.username}"></h:inputText>
+                    
                     Password:
                     <h:inputText value="#{customerview.password}"></h:inputText>
                     <h:commandButton action="#{customerview.login()}" value="Login"  />
                 </h:form>
             </f:view>
-        
+         <h:messages for="loginCredentials" style="color:red" showSummary="false" showDetail="true"> </h:messages>  
         
     </h:body>
 </html>

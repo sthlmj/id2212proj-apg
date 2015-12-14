@@ -9,7 +9,9 @@ import controller.CustomerController;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
 
 /**
@@ -25,6 +27,7 @@ public class CustomerView implements Serializable{
     private String username;
     private boolean signedIn;
 
+    
     public boolean isSignedIn() {
         return signedIn;
     }
@@ -32,6 +35,7 @@ public class CustomerView implements Serializable{
     public void setSignedIn(boolean signedIn) {
         this.signedIn = signedIn;
     }
+    
     public String getUsername() {
         return username;
     }
@@ -56,7 +60,14 @@ public class CustomerView implements Serializable{
     }
     
     public boolean login(){
-        return signedIn = cont.login(username, password);
+       signedIn = cont.login(username, password);
+       if(!signedIn){
+           //lägger till felmeddelande som kan ses i jsf filen
+           FacesContext.getCurrentInstance().addMessage("loginCredentials",
+                new FacesMessage(FacesMessage.SEVERITY_WARN, "login failed", "Your login credentials does not match any user"));
+       }
+        
+        return signedIn;
     }
     public void logout(){
         signedIn = false;

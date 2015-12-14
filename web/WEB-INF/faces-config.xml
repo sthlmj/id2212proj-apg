@@ -21,6 +21,10 @@
             <if>#{customerview.signedIn}</if>
             <to-view-id>/userArea.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <if>#{!customerview.signedIn}</if>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     <navigation-rule>
        <from-view-id>/userArea.xhtml</from-view-id> 
