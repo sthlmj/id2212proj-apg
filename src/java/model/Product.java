@@ -14,42 +14,42 @@ public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="type")
-    private String type;
+    @Column(name="product_type")
+    private String product_type;
     
-    @Column(name="units")
-    private int units;
+    @Column(name="nr_units")
+    private int nr_units;
 
     public int getUnits() {
-        return units;
+        return nr_units;
     }
 
     public void setUnits(int units) {
-        this.units = units;
+        this.nr_units = units;
     }
     
 
     public String getId() {
-        return type;
+        return product_type;
     }
 
     public void setId(String id) {
-        this.type = id;
+        this.product_type = id;
     }
 
     public Product() {
     
     }
     public Product(String type, int units) {
-        this.type = type;
-        this.units = units;
+        this.product_type = type;
+        this.nr_units = units;
     }
    
 
     
     @Override
     public String toString() {
-        return "model.Product[ id=" + type + " ]";
+        return "model.Product[ id=" + product_type + " ]";
     }
     
 }

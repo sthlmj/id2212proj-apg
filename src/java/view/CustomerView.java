@@ -8,6 +8,7 @@ package view;
 import controller.CustomerController;
 import controller.ShoppingController;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -38,14 +39,14 @@ public class CustomerView implements Serializable{
     private String type;
     private int units; 
 
-    private List<Product> cart;
+    private List<Product> cart = new ArrayList();
 
     public List<Product> getCart() {
         return cart;
     }
 
     public void setCart(List<Product> cart) {
- 
+     
         this.cart = cart;
     }
     
@@ -113,11 +114,24 @@ public class CustomerView implements Serializable{
     }
     
     public Product takeProduct(){
-        return cartCont.takeProduct(type, units);
+        Product p = cartCont.takeProduct(type, units);
+        if(p != null){
+          cart.add(p);  
+        }
+        return p;
     }
     
-    public boolean checkoutcart(){
-        return cartCont.buy(cart);
+    public void checkoutcart(){
+       
+        if(cartCont.buy(cart)){//product bought
+            FacesContext.getCurrentInstance().addMessage("cart",
+                new FacesMessage(FacesMessage.SEVERITY_WARN,"Buy Status", "Product(s) was purchased"));
+        }
+        else{
+             FacesContext.getCurrentInstance().addMessage("cart",
+                new FacesMessage(FacesMessage.SEVERITY_WARN,"Buy Status", "Product(s) could not be purchased"));
+        }
+         setCart(new ArrayList());
     }
     
     public List<Product> allProducts(){

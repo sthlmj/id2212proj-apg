@@ -9,22 +9,36 @@
     </h:head>
     <h:body>
         Hello #{customerview.username} 
-        <f:view>
-                <h:form>
-                    Type                    
-                    <h:inputText id="type" value="#{customerview.type}"></h:inputText>
+        <f:view >
+                <h:form id="cart">
+                    Type:
+                    <h:selectOneMenu value="#{customerview.type}">
+                        <c:forEach items="#{customerview.allProducts()}" var="product">
+                            <f:selectItem itemValue="#{product.id}" itemLabel="#{product.id}" />  
+                        </c:forEach>             
+                    </h:selectOneMenu>
+                    
                     Units:
                     <h:inputText value="#{customerview.units}"></h:inputText>
                     <h:commandButton action="#{customerview.takeProduct()}" value="Add To Cart"  />
                     <h:commandButton action="#{customerview.checkoutcart()}" value="Buy"/>
                 </h:form>
         </f:view>
+        
+        Available Products:
         <c:forEach items="#{customerview.allProducts()}" var="product">
             Type: <h:outputText  value="${product.id}"/><br/>
             Units: <h:outputText value="${product.units}"/><br/>
         </c:forEach>
-        <h:form><h:commandButton action="#{customerview.logout()}" value="logout"/></h:form>
         
+        Your cart:
+        <c:forEach items="#{customerview.cart}" var="cart">
+            Type: <h:outputText  value="${cart.id}"/><br/>
+            Units: <h:outputText value="${cart.units}"/><br/>
+        </c:forEach>
+        
+        <h:form><h:commandButton action="#{customerview.logout()}" value="logout"/></h:form>
+        <h:messages for="cart" style="color:orange" showSummary="false" showDetail="true"> </h:messages>  
     </h:body>
 </html>
 

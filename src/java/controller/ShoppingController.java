@@ -24,12 +24,7 @@ public class ShoppingController {
 
     @PersistenceContext(unitName = "id2212proj-apgPU")
     private EntityManager em;
-    
-    @Resource
-    private SessionContext context;
-
-    @Resource
-    private UserTransaction usertransaction;
+   
     
     //Manages Entity
     public EntityManager getEntityManager() {
@@ -43,12 +38,24 @@ public class ShoppingController {
      * @return Product if match null else
      */
     public Product takeProduct(String type, int units){
-        try{
-           return (Product) em.createQuery("SELECT p FROM Product p WHERE type=:type AND unit <=:value").setParameter("type", units).setParameter("value", units).getResultList().get(0);
+        
+        System.out.println("takeproduct");
+       // try{
+            if(em.createQuery("SELECT p FROM Product p WHERE p.product_type=:pType AND p.nr_units>=:NUnits")
+                    .setParameter("pType", type)
+                    .setParameter("NUnits", units).getResultList().size() > 0){
+                return new Product(type,units);
+            }
+            else{
+                return null;
+            }
+         /*   
+           return (Product) em.createQuery("SELECT p FROM Product p WHERE p.product_type=:pType AND p.nr_units>=:NUnits").setParameter("pType", type).setParameter("NUnits", units).getResultList().get(0);
         } catch (Exception e){
+            e.printStackTrace();
             return null;
  
-        }
+        }*/
     }
     
     /**
@@ -58,21 +65,28 @@ public class ShoppingController {
      */
     
     public boolean buy(List<Product> list){
+        System.out.println("entering buy method list size: " + list.size());
        for(Product p : list){
+           System.out.println("foreach loop");
            
-           Product onMarketP = (Product) em.createQuery("SELECT p FROM Product p WHERE unit <=:value").setParameter("type", p.getId()).setParameter("value", p.getUnits()).getResultList().get(0);
+           Product onMarketP = (Product) em.createQuery("SELECT p FROM Product p WHERE p.product_type=:pType AND p.nr_units>=:NUnits")
+                   .setParameter("pType", p.getId()).setParameter("NUnits", p.getUnits()).getResultList().get(0);
            
            //we buy a part of all the products
            if (onMarketP == null){
-               context.getRollbackOnly();
+               //context.getRollbackOnly();
+               em.getTransaction().rollback();
                return false;
            }
            //If we buy the last products on the market
            if(onMarketP.getUnits() == p.getUnits()){
+               System.out.println("if case 2");
                em.remove(onMarketP);
            }
            else { // uppdate product information
-               em.merge(new Product(p.getId(),onMarketP.getUnits() - p.getUnits()));
+               System.out.println("Merge operation called on product("+ onMarketP.getId() + "): " + (onMarketP.getUnits() - p.getUnits()) );
+               em.merge(new Product(onMarketP.getId(),onMarketP.getUnits() - p.getUnits()));
+               
            }
           
        }
