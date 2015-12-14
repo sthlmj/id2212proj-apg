@@ -19,11 +19,11 @@
        <from-view-id>/index.xhtml</from-view-id> 
         <navigation-case>
             <if>#{customerview.signedIn}</if>
-            <to-view-id>/membersArea.xhtml</to-view-id>
+            <to-view-id>/userArea.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
-       <from-view-id>/membersArea.xhtml</from-view-id> 
+       <from-view-id>/userArea.xhtml</from-view-id> 
         <navigation-case>
             <if>#{!customerview.signedIn}</if>
             <to-view-id>/index.xhtml</to-view-id>
