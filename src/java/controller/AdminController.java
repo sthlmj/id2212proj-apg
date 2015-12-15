@@ -24,8 +24,16 @@ public class AdminController {
 
    
     public boolean login(String userID, String password) {
-        System.out.println("Login with: " + userID +" and password " + password);
-        return em.find(Admin.class, userID).getPassword().equals(password);
+        Admin admin = em.find(Admin.class, userID);
+        if(admin == null){
+            return false;
+        }
+        else if(admin.getPassword().equals(password)){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
     
     public void customerBann(String userID, boolean banned){

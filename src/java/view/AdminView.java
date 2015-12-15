@@ -30,7 +30,7 @@ public class AdminView implements Serializable{
 
    
     private String password;
-    private boolean ban;
+    private boolean ban=false;
     
     private String productID;
     private int product_units;
@@ -42,6 +42,7 @@ public class AdminView implements Serializable{
     public AdminView() {
         signedIn = false;
         cont = new AdminController();
+        ban=false;
     }
 
     public boolean isSignedIn() {

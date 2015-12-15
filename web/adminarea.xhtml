@@ -14,10 +14,11 @@
            <h:form id="users">
         <h:selectOneMenu value="#{adminView.userID}">
             <c:forEach items="#{adminView.customers}" var="customer">
-                <f:selectItem itemValue="#{customer.id}" itemLabel="User: #{customer.id} Banned:#{customer.banned}" />  
+                <f:selectItem itemValue="#{customer.id}" itemLabel="User: #{customer.id} Banned:#{customer.banned}" /> 
             </c:forEach>             
         </h:selectOneMenu>
-               
+               Ban(Yes/No): <h:selectBooleanCheckbox value="#{adminView.ban}" ></h:selectBooleanCheckbox>         
+        <h:commandButton action="#{adminView.customerBann()}" value="ApplySettings"/>
         </h:form>    
            <h:form><h:commandButton action="#{adminView.logout()}" value="logout"/></h:form>
         </f:view>
