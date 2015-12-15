@@ -10,7 +10,7 @@
         <title>Acme Plastic Gnomes!</title>
     </h:head>
     <h:body>
-         Login:
+         Customer Login:
          <f:view>
                 <h:form id="loginCredentials">
                     Username:                    
@@ -20,6 +20,18 @@
                     <h:commandButton action="#{customerview.login()}" value="Login"  />
                 </h:form>
             </f:view>
+         <br/>
+         Admin Login:
+         <f:view>
+                <h:form id="AdminloginCredentials">
+                    Username:                    
+                    <h:inputText id="adminUsername" value="#{adminView.userID}"></h:inputText>
+                    Password:
+                    <h:inputText value="#{adminView.password}"></h:inputText>
+                    <h:commandButton action="#{adminView.login()}" value="Login"  />
+                </h:form>
+            </f:view>
+         
          <h:messages for="loginCredentials" style="color:red" showSummary="false" showDetail="true"> </h:messages>  
         
     </h:body>

@@ -1,15 +1,25 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
     <h:head>
         <title>User Area</title>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <link rel="stylesheet" href="/resources/demos/style.css"/>
+        
+        
     </h:head>
     <h:body>
         Hello #{customerview.username} 
-        <f:view >
+        
+        
+        <f:view>
                 <h:form id="cart">
                     Type:
                     <h:selectOneMenu value="#{customerview.type}">
@@ -17,10 +27,9 @@
                             <f:selectItem itemValue="#{product.id}" itemLabel="#{product.id}" />  
                         </c:forEach>             
                     </h:selectOneMenu>
-                    
                     Units:
                     <h:inputText value="#{customerview.units}"></h:inputText>
-                    <h:commandButton action="#{customerview.takeProduct()}" value="Add To Cart"  />
+                    <h:commandButton action="#{customerview.takeProduct()}" value="Add To Cart"/>
                     <h:commandButton action="#{customerview.checkoutcart()}" value="Buy"/>
                 </h:form>
         </f:view>

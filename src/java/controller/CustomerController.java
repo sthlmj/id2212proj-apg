@@ -49,7 +49,8 @@ public class CustomerController {
             return false; 
         }
         
-        if( c.getPassword().equals(password)){
+        if( c.getPassword().equals(password) && !c.isBanned()){
+
             return true;
         }
         else{

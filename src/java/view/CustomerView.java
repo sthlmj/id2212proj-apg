@@ -93,6 +93,7 @@ public class CustomerView implements Serializable{
     private String password;
 
     public CustomerView() {
+        signedIn = false;
         this.username = "";
         this.password = "";
         cont = new CustomerController();

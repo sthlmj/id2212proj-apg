@@ -15,15 +15,20 @@
         </navigation-case>
         
     </navigation-rule>
+ 
     <navigation-rule>
-       <from-view-id>/index.xhtml</from-view-id> 
+        <from-view-id>/index.xhtml</from-view-id>        
         <navigation-case>
-            <if>#{customerview.signedIn}</if>
-            <to-view-id>/userArea.xhtml</to-view-id>
+            <if>#{adminView.signedIn}</if>
+            <to-view-id>/adminarea.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <if>#{!customerview.signedIn}</if>
+            <if>#{!customerview.signedIn and !adminView.signedIn}</if>
             <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <if>#{customerView.signedIn}</if>
+            <to-view-id>/userArea.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -34,5 +39,12 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
-    
+    <navigation-rule>
+        <from-view-id>/adminarea.xhtml</from-view-id>
+        <navigation-case>
+            <if>#{!adminView.signedIn}</if>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>   
 </faces-config>
