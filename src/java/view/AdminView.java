@@ -22,33 +22,30 @@ import model.Product;
  */
 @SessionScoped
 @Named("adminView")
-public class AdminView implements Serializable{
-   
+public class AdminView implements Serializable {
+
     private boolean signedIn;
 
-    
     private String userID;
 
-   
     private String password;
-    private boolean ban=false;
-    
+    private boolean ban = false;
+
     private String productID;
     private int product_units;
-    
+
     private String new_productID;
     private int new_product_units;
-    
+
     private String productToRemove;
 
-    
     @EJB
     AdminController cont;
-    
+
     public AdminView() {
         signedIn = false;
         cont = new AdminController();
-        ban=false;
+        ban = false;
     }
 
     public String getProductToRemove() {
@@ -58,8 +55,8 @@ public class AdminView implements Serializable{
     public void setProductToRemove(String productToRemove) {
         this.productToRemove = productToRemove;
     }
-    
-     public String getNew_productID() {
+
+    public String getNew_productID() {
         return new_productID;
     }
 
@@ -74,7 +71,7 @@ public class AdminView implements Serializable{
     public void setNew_product_units(int new_product_units) {
         this.new_product_units = new_product_units;
     }
-    
+
     public boolean isSignedIn() {
         return signedIn;
     }
@@ -82,10 +79,8 @@ public class AdminView implements Serializable{
     public void setSignedIn(boolean signedIn) {
         this.signedIn = signedIn;
     }
-    
-  
-    
-     public String getUserID() {
+
+    public String getUserID() {
         return userID;
     }
 
@@ -124,44 +119,44 @@ public class AdminView implements Serializable{
     public void setProduct_units(int product_units) {
         this.product_units = product_units;
     }
-    public void login(){
-        signedIn = cont.login(userID, password);  
-       if(!signedIn){
-           //lägger till felmeddelande som kan ses i jsf filen
-           FacesContext.getCurrentInstance().addMessage("loginCredentials",
-                new FacesMessage(FacesMessage.SEVERITY_WARN, "login failed", "Admin credentials does not work"));
-       }
-       
+
+    public void login() {
+        signedIn = cont.login(userID, password);
+        if (!signedIn) {
+            //lägger till felmeddelande som kan ses i jsf filen
+            FacesContext.getCurrentInstance().addMessage("loginCredentials",
+                    new FacesMessage(FacesMessage.SEVERITY_WARN, "login failed", "Admin credentials does not work"));
+        }
+
     }
-    
-    public void customerBann(){
-       cont.customerBann(userID, ban);
+
+    public void customerBann() {
+        cont.customerBann(userID, ban);
     }
-    
-    
-    public void addProduct(){
+
+    public void addProduct() {
         cont.addProduct(new_productID, new_product_units);
         new_productID = "";
         new_product_units = 0;
     }
-    
-    public void removeProduct(){
+
+    public void removeProduct() {
         cont.removeProduct(productToRemove);
     }
-    
-    public void addProductUnits(){
+
+    public void addProductUnits() {
         cont.addProductUnits(productID, product_units);
     }
-    
-    public List<Customer> getCustomers(){
+
+    public List<Customer> getCustomers() {
         return cont.listCustomer();
     }
-    
-    public List<Product> getProducts(){
+
+    public List<Product> getProducts() {
         return cont.listProduct();
     }
-    
-    public void logout(){
+
+    public void logout() {
         signedIn = false;
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
     }

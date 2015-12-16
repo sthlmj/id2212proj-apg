@@ -54,7 +54,7 @@
                     </c:forEach>             
                 </h:selectOneMenu>
                 <h:inputText value="#{adminView.product_units}"></h:inputText>
-                       
+
                 <h:commandButton action="#{adminView.addProductUnits()}" value="AddUnits"/>
             </h:form> 
             <br/>
@@ -67,10 +67,10 @@
                         <f:selectItem itemValue="#{product.id}" itemLabel="Type: #{product.id} Units:#{product.units}" /> 
                     </c:forEach>             
                 </h:selectOneMenu>
-     
+
                 <h:commandButton action="#{adminView.removeProduct()}" value="RemoveProduct"/>
             </h:form> 
-            
+
         </f:view>
     </h:body>
 </html>

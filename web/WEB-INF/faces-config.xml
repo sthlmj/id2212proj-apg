@@ -32,7 +32,7 @@
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
-       <from-view-id>/userArea.xhtml</from-view-id> 
+        <from-view-id>/userArea.xhtml</from-view-id> 
         <navigation-case>
             <if>#{!customerview.signedIn}</if>
             <to-view-id>/index.xhtml</to-view-id>

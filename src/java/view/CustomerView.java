@@ -1,4 +1,3 @@
-
 package view;
 
 import controller.CustomerController;
@@ -20,20 +19,21 @@ import model.Product;
  */
 @SessionScoped
 @Named("customerview")
-public class CustomerView implements Serializable{
+public class CustomerView implements Serializable {
+
     @EJB
     private CustomerController cont;
-    
+
     @EJB
     private ShoppingController cartCont;
-    
+
     //Register and login credential
     private String username;
     private boolean signedIn;
-    
+
     //Shop information
     private String type;
-    private int units; 
+    private int units;
 
     private List<Product> cart = new ArrayList();
 
@@ -42,10 +42,10 @@ public class CustomerView implements Serializable{
     }
 
     public void setCart(List<Product> cart) {
-     
+
         this.cart = cart;
     }
-    
+
     public String getType() {
         return type;
     }
@@ -62,7 +62,6 @@ public class CustomerView implements Serializable{
         this.units = units;
     }
 
-    
     public boolean isSignedIn() {
         return signedIn;
     }
@@ -70,7 +69,7 @@ public class CustomerView implements Serializable{
     public void setSignedIn(boolean signedIn) {
         this.signedIn = signedIn;
     }
-    
+
     public String getUsername() {
         return username;
     }
@@ -94,44 +93,44 @@ public class CustomerView implements Serializable{
         this.password = "";
         cont = new CustomerController();
     }
-    
-    public boolean login(){
-       signedIn = cont.login(username, password);
-       if(!signedIn){
-           //lägger till felmeddelande som kan ses i jsf filen
-           FacesContext.getCurrentInstance().addMessage("loginCredentials",
-                new FacesMessage(FacesMessage.SEVERITY_WARN, "login failed", "Your login credentials does not match any user"));
-       }
-        
+
+    public boolean login() {
+        signedIn = cont.login(username, password);
+        if (!signedIn) {
+            //lägger till felmeddelande som kan ses i jsf filen
+            FacesContext.getCurrentInstance().addMessage("loginCredentials",
+                    new FacesMessage(FacesMessage.SEVERITY_WARN, "login failed", "Your login credentials does not match any user"));
+        }
+
         return signedIn;
     }
-    public void logout(){
+
+    public void logout() {
         signedIn = false;
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
     }
-    
-    public Product takeProduct(){
+
+    public Product takeProduct() {
         Product p = cartCont.takeProduct(type, units);
-        if(p != null){
-          cart.add(p);  
+        if (p != null) {
+            cart.add(p);
         }
         return p;
     }
-    
-    public void checkoutcart(){
-       
-        if(cartCont.buy(cart)){//product bought
+
+    public void checkoutcart() {
+
+        if (cartCont.buy(cart)) {//product bought
             FacesContext.getCurrentInstance().addMessage("cart",
-                new FacesMessage(FacesMessage.SEVERITY_WARN,"Buy Status", "Product(s) was purchased"));
+                    new FacesMessage(FacesMessage.SEVERITY_WARN, "Buy Status", "Product(s) was purchased"));
+        } else {
+            FacesContext.getCurrentInstance().addMessage("cart",
+                    new FacesMessage(FacesMessage.SEVERITY_WARN, "Buy Status", "Product(s) could not be purchased"));
         }
-        else{
-             FacesContext.getCurrentInstance().addMessage("cart",
-                new FacesMessage(FacesMessage.SEVERITY_WARN,"Buy Status", "Product(s) could not be purchased"));
-        }
-         setCart(new ArrayList());
+        setCart(new ArrayList());
     }
-    
-    public List<Product> allProducts(){
+
+    public List<Product> allProducts() {
         return cartCont.listProducts();
     }
 }

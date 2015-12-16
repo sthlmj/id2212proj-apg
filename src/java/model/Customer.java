@@ -1,4 +1,3 @@
-
 package model;
 
 import java.io.Serializable;
@@ -21,15 +20,13 @@ public class Customer implements Serializable {
     @Column(name = "id")
     private String userid;
 
-     //the ratio value compared to SEK
+    //the ratio value compared to SEK
     @Column(name = "password")
     private String password;
 
     @Column(name = "banned")
     private boolean banned;
 
-    
-    
     public String getPassword() {
         return password;
     }
@@ -37,18 +34,17 @@ public class Customer implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
-    public Customer(){
+
+    public Customer() {
         this.banned = false;
     }
-    
-    public Customer(String userid, String password){
+
+    public Customer(String userid, String password) {
         this.userid = userid;
         this.password = password;
         this.banned = false;
     }
-    
+
     public boolean isBanned() {
         return banned;
     }
@@ -56,6 +52,7 @@ public class Customer implements Serializable {
     public void setBanned(boolean banned) {
         this.banned = banned;
     }
+
     public String getId() {
         return userid;
     }
@@ -64,12 +61,9 @@ public class Customer implements Serializable {
         this.userid = id;
     }
 
-  
-
-
     @Override
     public String toString() {
         return "model.Customer[ id=" + userid + " ]";
     }
-    
+
 }

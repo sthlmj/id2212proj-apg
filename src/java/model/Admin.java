@@ -23,13 +23,11 @@ public class Admin implements Serializable {
     @Id
     @Column(name = "id")
     private String id;
-   
 
-     //the ratio value compared to SEK
+    //the ratio value compared to SEK
     @Column(name = "password")
     private String password;
 
-   
     public Admin() {
     }
 
@@ -57,5 +55,5 @@ public class Admin implements Serializable {
     public String toString() {
         return "model.Admin[ id=" + id + " ]";
     }
-    
+
 }

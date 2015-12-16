@@ -19,57 +19,55 @@ import model.Product;
  */
 @Stateless
 public class AdminController {
+
     @PersistenceContext(unitName = "id2212proj-apgPU")
     private EntityManager em;
 
-   
     public boolean login(String userID, String password) {
         Admin admin = em.find(Admin.class, userID);
-        if(admin == null){
+        if (admin == null) {
             return false;
-        }
-        else if(admin.getPassword().equals(password)){
+        } else if (admin.getPassword().equals(password)) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
-    
-    public void customerBann(String userID, boolean banned){
+
+    public void customerBann(String userID, boolean banned) {
         Customer new_customer_state = em.find(Customer.class, userID);
         new_customer_state.setBanned(banned);
         em.merge(new_customer_state);
         //TODO: gör en unbanned
     }
-    
-    public void addProduct(String productType, int units){
+
+    public void addProduct(String productType, int units) {
         em.persist(new Product(productType, units));
     }
-    
-    public void addProductUnits(String productID, int increaseBy){
+
+    public void addProductUnits(String productID, int increaseBy) {
         Product product = em.find(Product.class, productID);
-        
-        if(product.getUnits() + increaseBy < 0){
+
+        if (product.getUnits() + increaseBy < 0) {
             product.setUnits(product.getUnits() + increaseBy);
         }
         product.setUnits(product.getUnits() + increaseBy);
-        
+
         em.merge(product);
     }
-    
-    public void removeProduct(String productID){
-      Product to_remove = em.find(Product.class, productID);
-      em.remove(to_remove);
+
+    public void removeProduct(String productID) {
+        Product to_remove = em.find(Product.class, productID);
+        em.remove(to_remove);
     }
-    
-    public List<Customer> listCustomer(){
-       List result = em.createQuery("SELECT c FROM Customer c").getResultList();
+
+    public List<Customer> listCustomer() {
+        List result = em.createQuery("SELECT c FROM Customer c").getResultList();
         return (List<Customer>) result;
     }
-    
-    public List<Product> listProduct(){
-       List result = em.createQuery("SELECT p FROM Product p").getResultList();
+
+    public List<Product> listProduct() {
+        List result = em.createQuery("SELECT p FROM Product p").getResultList();
         return (List<Product>) result;
     }
 }

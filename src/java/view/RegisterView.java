@@ -1,4 +1,3 @@
-
 package view;
 
 import controller.CustomerController;
@@ -10,16 +9,15 @@ import javax.inject.Named;
  *
  * @author guuurris
  */
-
 @RequestScoped
 @Named("registerview")
 public class RegisterView {
-    
+
     @EJB
-    private CustomerController cont;  
-    
+    private CustomerController cont;
+
     private String username;
-    private String password; 
+    private String password;
 
     private boolean success;
 
@@ -30,7 +28,7 @@ public class RegisterView {
     public void setSuccess(boolean success) {
         this.success = success;
     }
-    
+
     public String getUsername() {
         return username;
     }
@@ -46,18 +44,16 @@ public class RegisterView {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    public RegisterView(){
+
+    public RegisterView() {
         this.username = "";
         this.password = "";
         cont = new CustomerController();
     }
-    
-    public boolean register(){ 
 
-       return success = cont.register(username, password);
+    public boolean register() {
+
+        return success = cont.register(username, password);
     }
-    
-    
-    
+
 }

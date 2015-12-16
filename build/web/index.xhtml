@@ -7,44 +7,44 @@
 
     <h:head>
         <style>
-        #bc {
-            position:fixed;
-            top: 50%;
-            left: 50%;
-            width:30em;
-            height:18em;
-            margin-top: -9em; /*set to a negative number 1/2 of your height*/
-            margin-left: -15em; /*set to a negative number 1/2 of your width*/
-            background-color: #FFFFFF;
-        }
+            #bc {
+                position:fixed;
+                top: 50%;
+                left: 50%;
+                width:30em;
+                height:18em;
+                margin-top: -9em; /*set to a negative number 1/2 of your height*/
+                margin-left: -15em; /*set to a negative number 1/2 of your width*/
+                background-color: #FFFFFF;
+            }
         </style>
         <title>Acme Plastic Gnomes!</title>
     </h:head>
     <h:body id="bc">
-         Customer Login:
-         <f:view>
-                <h:form id="loginCredentials">
-                    Username:                    
-                    <h:inputText id="username" value="#{customerview.username}"></h:inputText>
-                    Password:
-                    <h:inputText value="#{customerview.password}"></h:inputText>
-                    <h:commandButton action="#{customerview.login()}" value="Login"  />
-                </h:form>
-            </f:view>
-         <br/>
-         Admin Login:
-         <f:view>
-                <h:form id="AdminloginCredentials">
-                    Username:                    
-                    <h:inputText id="adminUsername" value="#{adminView.userID}"></h:inputText>
-                    Password:
-                    <h:inputText value="#{adminView.password}"></h:inputText>
-                    <h:commandButton action="#{adminView.login()}" value="Login"  />
-                </h:form>
-            </f:view>
-         
-         <h:messages for="loginCredentials" style="color:red" showSummary="false" showDetail="true"> </h:messages>  
-        
+        Customer Login:
+        <f:view>
+            <h:form id="loginCredentials">
+                Username:                    
+                <h:inputText id="username" value="#{customerview.username}"></h:inputText>
+                Password:
+                <h:inputText value="#{customerview.password}"></h:inputText>
+                <h:commandButton action="#{customerview.login()}" value="Login"  />
+            </h:form>
+        </f:view>
+        <br/>
+        Admin Login:
+        <f:view>
+            <h:form id="AdminloginCredentials">
+                Username:                    
+                <h:inputText id="adminUsername" value="#{adminView.userID}"></h:inputText>
+                Password:
+                <h:inputText value="#{adminView.password}"></h:inputText>
+                <h:commandButton action="#{adminView.login()}" value="Login"  />
+            </h:form>
+        </f:view>
+
+        <h:messages for="loginCredentials" style="color:red" showSummary="false" showDetail="true"> </h:messages>  
+
     </h:body>
 </html>
 
