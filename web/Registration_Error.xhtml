@@ -3,9 +3,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
+        <style>
+            #bc {
+                position:fixed;
+                top: 50%;
+                left: 50%;
+                width:30em;
+                height:18em;
+                margin-top: -9em; /*set to a negative number 1/2 of your height*/
+                margin-left: -15em; /*set to a negative number 1/2 of your width*/
+                background-color: #FFFFFF;
+            }
+        </style>
         <title>Registration Error</title>
     </h:head>
-    <h:body>
+    <h:body id="bc">
         User name is already taken
     </h:body>
 </html>
