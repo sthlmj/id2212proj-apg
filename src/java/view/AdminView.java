@@ -14,6 +14,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import model.Customer;
+import model.Product;
 
 /**
  *
@@ -35,6 +36,11 @@ public class AdminView implements Serializable{
     private String productID;
     private int product_units;
     
+    private String new_productID;
+    private int new_product_units;
+    
+    private String productToRemove;
+
     
     @EJB
     AdminController cont;
@@ -45,6 +51,30 @@ public class AdminView implements Serializable{
         ban=false;
     }
 
+    public String getProductToRemove() {
+        return productToRemove;
+    }
+
+    public void setProductToRemove(String productToRemove) {
+        this.productToRemove = productToRemove;
+    }
+    
+     public String getNew_productID() {
+        return new_productID;
+    }
+
+    public void setNew_productID(String new_productID) {
+        this.new_productID = new_productID;
+    }
+
+    public int getNew_product_units() {
+        return new_product_units;
+    }
+
+    public void setNew_product_units(int new_product_units) {
+        this.new_product_units = new_product_units;
+    }
+    
     public boolean isSignedIn() {
         return signedIn;
     }
@@ -110,11 +140,13 @@ public class AdminView implements Serializable{
     
     
     public void addProduct(){
-        cont.addProduct(productID, product_units);
+        cont.addProduct(new_productID, new_product_units);
+        new_productID = "";
+        new_product_units = 0;
     }
     
     public void removeProduct(){
-        cont.removeProduct(productID);
+        cont.removeProduct(productToRemove);
     }
     
     public void addProductUnits(){
@@ -124,6 +156,11 @@ public class AdminView implements Serializable{
     public List<Customer> getCustomers(){
         return cont.listCustomer();
     }
+    
+    public List<Product> getProducts(){
+        return cont.listProduct();
+    }
+    
     public void logout(){
         signedIn = false;
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();

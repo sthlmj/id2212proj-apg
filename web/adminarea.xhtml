@@ -22,6 +22,7 @@
     <h:body id="bc">
         Hello Mr Admin 
         <f:view>
+            <h:form><h:commandButton action="#{adminView.logout()}" value="logout"/></h:form>
             <h:form id="users">
                 <h:selectOneMenu value="#{adminView.userID}">
                     <c:forEach items="#{adminView.customers}" var="customer">
@@ -31,7 +32,45 @@
                 Ban(Yes/No): <h:selectBooleanCheckbox value="#{adminView.ban}" ></h:selectBooleanCheckbox>         
                 <h:commandButton action="#{adminView.customerBann()}" value="ApplySettings"/>
             </h:form>    
-            <h:form><h:commandButton action="#{adminView.logout()}" value="logout"/></h:form>
+            <br/>
+            <br/>
+            Add New Product:
+            <br/>
+            <h:form>
+                ProductType:                    
+                <h:inputText value="#{adminView.new_productID}"></h:inputText>
+                Units:
+                <h:inputText value="#{adminView.new_product_units}"></h:inputText>
+                <h:commandButton action="#{adminView.addProduct()}" value="AddProduct"  />
+            </h:form>
+            <br/>
+            <br/>
+            Add Units To Product:
+            <br/>
+            <h:form id="products">
+                <h:selectOneMenu value="#{adminView.productID}">
+                    <c:forEach items="#{adminView.products}" var="product">
+                        <f:selectItem itemValue="#{product.id}" itemLabel="Type: #{product.id} Units:#{product.units}" /> 
+                    </c:forEach>             
+                </h:selectOneMenu>
+                <h:inputText value="#{adminView.product_units}"></h:inputText>
+                       
+                <h:commandButton action="#{adminView.addProductUnits()}" value="AddUnits"/>
+            </h:form> 
+            <br/>
+            <br/>
+            Product Removal:
+            <br/>
+            <h:form id="productToRemove">
+                <h:selectOneMenu value="#{adminView.productToRemove}">
+                    <c:forEach items="#{adminView.products}" var="product">
+                        <f:selectItem itemValue="#{product.id}" itemLabel="Type: #{product.id} Units:#{product.units}" /> 
+                    </c:forEach>             
+                </h:selectOneMenu>
+     
+                <h:commandButton action="#{adminView.removeProduct()}" value="RemoveProduct"/>
+            </h:form> 
+            
         </f:view>
     </h:body>
 </html>

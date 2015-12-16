@@ -49,7 +49,12 @@ public class AdminController {
     
     public void addProductUnits(String productID, int increaseBy){
         Product product = em.find(Product.class, productID);
+        
+        if(product.getUnits() + increaseBy < 0){
+            product.setUnits(product.getUnits() + increaseBy);
+        }
         product.setUnits(product.getUnits() + increaseBy);
+        
         em.merge(product);
     }
     
@@ -61,5 +66,10 @@ public class AdminController {
     public List<Customer> listCustomer(){
        List result = em.createQuery("SELECT c FROM Customer c").getResultList();
         return (List<Customer>) result;
+    }
+    
+    public List<Product> listProduct(){
+       List result = em.createQuery("SELECT p FROM Product p").getResultList();
+        return (List<Product>) result;
     }
 }
