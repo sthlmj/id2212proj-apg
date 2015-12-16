@@ -6,7 +6,7 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <style>
-            #bc {
+            #bc1 {
                 position:fixed;
                 top: 50%;
                 left: 50%;
@@ -15,11 +15,38 @@
                 margin-top: -9em; /*set to a negative number 1/2 of your height*/
                 margin-left: -15em; /*set to a negative number 1/2 of your width*/
                 background-color: #FFFFFF;
+                font-family: verdana;
+                font-size: 100%;
+                color: #585858;
+            }
+            #bc2 {
+                position:fixed;
+                top: 50%;
+                left: 50%;
+                width:50em;
+                height:28em;
+                margin-top: -9em; /*set to a negative number 1/2 of your height*/
+                margin-left: -15em; /*set to a negative number 1/2 of your width*/
+                background-color: #FFFFFF;
+                font-family: verdana;
+                font-size: 100%;
+            }
+            #bc3 {
+                position:fixed;
+                top: 20%;
+                left: 88%;
+                width:20em;
+                height:8em;
+                margin-top: -9em; /*set to a negative number 1/2 of your height*/
+                margin-left: -15em; /*set to a negative number 1/2 of your width*/
+                background-color: #FFFFFF;
+                font-family: verdana;
+                font-size: 100%;
             }
         </style>
         <title>Register User</title>
     </h:head>
-    <h:body id="bc"> 
+    <h:body id="bc1"> 
         <f:view>
             <h:form>
                 Username:                    
@@ -29,6 +56,9 @@
                 <h:commandButton action="#{registerview.register()}" value="register"  />
             </h:form>
         </f:view>
+        <div id="bc3">
+        <a href="index.xhtml">LOGIN</a>
+        </div>
     </h:body>
 </html>
 
