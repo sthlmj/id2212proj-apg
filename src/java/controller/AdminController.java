@@ -40,6 +40,7 @@ public class AdminController {
         Customer new_customer_state = em.find(Customer.class, userID);
         new_customer_state.setBanned(banned);
         em.merge(new_customer_state);
+        //TODO: gör en unbanned
     }
     
     public void addProduct(String productType, int units){

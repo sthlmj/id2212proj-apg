@@ -5,18 +5,30 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
+        <style>
+            #bc {
+                position:fixed;
+                top: 50%;
+                left: 50%;
+                width:30em;
+                height:18em;
+                margin-top: -9em; /*set to a negative number 1/2 of your height*/
+                margin-left: -15em; /*set to a negative number 1/2 of your width*/
+                background-color: #FFFFFF;
+            }
+        </style>
         <title>Register User</title>
     </h:head>
-    <h:body> 
+    <h:body id="bc"> 
         <f:view>
-                <h:form>
-                    Username:                    
-                    <h:inputText value="#{registerview.username}"></h:inputText>
-                    Password:
-                    <h:inputText value="#{registerview.password}"></h:inputText>
-                    <h:commandButton action="#{registerview.register()}" value="register"  />
-                </h:form>
-            </f:view>
+            <h:form>
+                Username:                    
+                <h:inputText value="#{registerview.username}"></h:inputText>
+                Password:
+                <h:inputText value="#{registerview.password}"></h:inputText>
+                <h:commandButton action="#{registerview.register()}" value="register"  />
+            </h:form>
+        </f:view>
     </h:body>
 </html>
 
