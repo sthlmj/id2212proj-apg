@@ -7,7 +7,7 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <style>
-            #bc {
+            #bc1 {
                 position:fixed;
                 top: 50%;
                 left: 50%;
@@ -16,6 +16,33 @@
                 margin-top: -9em; /*set to a negative number 1/2 of your height*/
                 margin-left: -15em; /*set to a negative number 1/2 of your width*/
                 background-color: #FFFFFF;
+                font-family: verdana;
+                font-size: 100%;
+                color: #585858;
+            }
+            #bc2 {
+                position:fixed;
+                top: 50%;
+                left: 50%;
+                width:50em;
+                height:28em;
+                margin-top: -9em; /*set to a negative number 1/2 of your height*/
+                margin-left: -15em; /*set to a negative number 1/2 of your width*/
+                background-color: #FFFFFF;
+                font-family: verdana;
+                font-size: 100%;
+            }
+            #bc3 {
+                position:fixed;
+                top: 20%;
+                left: 88%;
+                width:20em;
+                height:8em;
+                margin-top: -9em; /*set to a negative number 1/2 of your height*/
+                margin-left: -15em; /*set to a negative number 1/2 of your width*/
+                background-color: #FFFFFF;
+                font-family: verdana;
+                font-size: 100%;
             }
         </style>
         <title>User Area</title>
@@ -26,11 +53,15 @@
 
 
     </h:head>
-    <h:body id="bc">
-        Hello #{customerview.username} 
-
-
-        <f:view>
+    <h:body id="bc1">
+        Hello #{customerview.username} <br/><br/>
+        <br/>
+        Products Available:<br/><br/>
+        <c:forEach items="#{customerview.allProducts()}" var="product">
+            Type: <h:outputText  value="${product.id}"/><br/>
+            Units: <h:outputText value="${product.units}"/><br/>
+        </c:forEach>
+        <f:view><br/><br/>
             <h:form id="cart">
                 Type:
                 <h:selectOneMenu value="#{customerview.type}">
@@ -43,22 +74,14 @@
                 <h:commandButton action="#{customerview.takeProduct()}" value="Add To Cart"/>
                 <h:commandButton action="#{customerview.checkoutcart()}" value="Buy"/>
             </h:form>
-        </f:view>
-
-        Available Products:
-        <c:forEach items="#{customerview.allProducts()}" var="product">
-            Type: <h:outputText  value="${product.id}"/><br/>
-            Units: <h:outputText value="${product.units}"/><br/>
-        </c:forEach>
-
+        </f:view><br/><br/>
         Your cart:
         <c:forEach items="#{customerview.cart}" var="cart">
             Type: <h:outputText  value="${cart.id}"/><br/>
             Units: <h:outputText value="${cart.units}"/><br/>
         </c:forEach>
-
-        <h:form><h:commandButton action="#{customerview.logout()}" value="logout"/></h:form>
-        <h:messages for="cart" style="color:orange" showSummary="false" showDetail="true"> </h:messages>  
+        <h:form id="bc3"><h:commandButton action="#{customerview.logout()}" value="Logout"/></h:form>
+        <!-- <h:messages for="cart" style="color:orange" showSummary="false" showDetail="true"> </h:messages> -->
     </h:body>
 </html>
 
