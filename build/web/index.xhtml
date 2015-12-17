@@ -58,7 +58,7 @@
                     Username:                    
                     <h:inputText id="username" value="#{customerview.username}"></h:inputText>
                     Password:
-                    <h:inputText value="#{customerview.password}"></h:inputText>
+                    <h:inputSecret value="#{customerview.password}"></h:inputSecret>
                     <h:commandButton action="#{customerview.login()}" value="Login"  />
                 </h:form>
             </f:view>
@@ -70,7 +70,7 @@
                     Username:                    
                     <h:inputText id="adminUsername" value="#{adminView.userID}"></h:inputText>
                     Password:
-                    <h:inputText value="#{adminView.password}"></h:inputText>
+                    <h:inputSecret value="#{adminView.password}"></h:inputSecret>
                     <h:commandButton action="#{adminView.login()}" value="Login"  />
                 </h:form>
             </f:view>
