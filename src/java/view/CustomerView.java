@@ -6,11 +6,12 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
 import model.Product;
 
@@ -147,14 +148,22 @@ public class CustomerView implements Serializable {
 
     public void checkoutcart() {
 
-        if (cartCont.buy(cart)) {//product bought
-            FacesContext.getCurrentInstance().addMessage("cart",
-                    new FacesMessage(FacesMessage.SEVERITY_WARN, "Buy Status", "Product(s) was purchased"));
-        } else {
-            FacesContext.getCurrentInstance().addMessage("cart",
-                    new FacesMessage(FacesMessage.SEVERITY_WARN, "Buy Status", "Product(s) could not be purchased"));
+        try {
+            if (cartCont.buy(cart)) {//product bought
+                FacesContext.getCurrentInstance().addMessage("cart",
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Buy Status", "Product(s) was purchased"));
+            } else {
+                FacesContext.getCurrentInstance().addMessage("cart",
+                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Buy Status", "Product(s) could not be purchased"));
+            }
+            setCart(new ArrayList());
+        } catch (Exception ex) {
+           FacesContext.getCurrentInstance().addMessage("cart",
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Buy Status", "Product(s) could not be purchased"));
+            
         }
-        setCart(new ArrayList());
+        
+        cart.clear();
     }
 
     public List<Product> allProducts() {

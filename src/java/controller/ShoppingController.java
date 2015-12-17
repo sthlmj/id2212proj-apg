@@ -23,7 +23,11 @@ public class ShoppingController {
 
     @PersistenceContext(unitName = "id2212proj-apgPU")
     private EntityManager em;
-
+    
+    @Resource
+    SessionContext context;
+    
+    
     //Manages Entity
     public EntityManager getEntityManager() {
         return em;
@@ -61,19 +65,30 @@ public class ShoppingController {
      *
      * @return if products was bought or not
      */
-    public boolean buy(List<Product> list) {
+    public boolean buy(List<Product> list) throws Exception {
+       
         System.out.println("entering buy method list size: " + list.size());
         for (Product p : list) {
             System.out.println("foreach loop");
-
-            Product onMarketP = (Product) em.createQuery("SELECT p FROM Product p WHERE p.product_type=:pType AND p.nr_units>=:NUnits")
-                    .setParameter("pType", p.getId()).setParameter("NUnits", p.getUnits()).getResultList().get(0);
-
+            
+            Product onMarketP = null;
+            
+            List<Product> List_onMarketP = (List<Product>) em.createQuery("SELECT p FROM Product p WHERE p.product_type=:pType AND p.nr_units>=:NUnits")
+                    .setParameter("pType", p.getId()).setParameter("NUnits", p.getUnits()).getResultList();
+            
+            if(List_onMarketP.isEmpty()){
+                context.setRollbackOnly();
+                throw new Exception("Buy rolledback (Transaction could not be) ");
+              
+            }
+            else{
+                onMarketP = List_onMarketP.get(0);
+            }
+            
             //we buy a part of all the products
-            if (onMarketP == null) {
-                //context.getRollbackOnly();
-                em.getTransaction().rollback();
-                return false;
+            if (onMarketP == null ) {
+                context.setRollbackOnly();
+                 throw new Exception("Buy rolledback (Transaction could not be) ");
             }
             //If we buy the last products on the market
             if (onMarketP.getUnits() == p.getUnits()) {
