@@ -81,5 +81,6 @@
         </c:forEach>
         <h:form id="bc3"><h:commandButton action="#{customerview.logout()}" value="Logout"/></h:form>
         <!-- <h:messages for="cart" style="color:orange" showSummary="false" showDetail="true"> </h:messages> -->
+        <h:inputHidden >#{customerview.signedIn}</h:inputHidden >
     </h:body>
 </html>

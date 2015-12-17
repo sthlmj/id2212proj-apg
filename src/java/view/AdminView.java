@@ -6,6 +6,7 @@
 package view;
 
 import controller.AdminController;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -73,6 +74,16 @@ public class AdminView implements Serializable {
     }
 
     public boolean isSignedIn() {
+        if (!signedIn) {
+
+            try {
+
+                FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath() + "/faces/index.xhtml");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+
         return signedIn;
     }
 
