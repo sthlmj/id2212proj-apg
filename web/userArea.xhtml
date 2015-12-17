@@ -75,7 +75,7 @@
                 <h:inputHidden>#{customerview.autoRedirect()}</h:inputHidden>
             </h:form>
         </f:view><br/><br/>
-        Your cart:
+        Your cart:<br/>
         <c:forEach items="#{customerview.cart}" var="cart">
             Type: <h:outputText  value="${cart.id}"/><br/>
             Units: <h:outputText value="${cart.units}"/><br/>
