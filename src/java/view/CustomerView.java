@@ -98,7 +98,6 @@ public class CustomerView implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    
 
     public CustomerView() {
         signedIn = false;
@@ -109,7 +108,7 @@ public class CustomerView implements Serializable {
 
     public boolean login() {
         signedIn = cont.login(username, password);
-        
+
         System.out.println("sign in status: " + signedIn);
         if (!signedIn) {
             //lägger till felmeddelande som kan ses i jsf filen
@@ -125,7 +124,7 @@ public class CustomerView implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
     }
 
-    public void autoRedirect(){
+    public void autoRedirect() {
         if (!signedIn) {
 
             try {
@@ -133,11 +132,11 @@ public class CustomerView implements Serializable {
                 FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath() + "/faces/index.xhtml");
             } catch (IOException ex) {
                 ex.printStackTrace();
-            
-        }
+
+            }
         }
     }
-    
+
     public Product takeProduct() {
         Product p = cartCont.takeProduct(type, units);
         if (p != null) {
@@ -158,11 +157,11 @@ public class CustomerView implements Serializable {
             }
             setCart(new ArrayList());
         } catch (Exception ex) {
-           FacesContext.getCurrentInstance().addMessage("cart",
-                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Buy Status", "Product(s) could not be purchased"));
-            
+            FacesContext.getCurrentInstance().addMessage("cart",
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Buy Status", "Product(s) could not be purchased"));
+
         }
-        
+
         cart.clear();
     }
 

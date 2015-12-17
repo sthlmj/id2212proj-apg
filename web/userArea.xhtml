@@ -80,9 +80,9 @@
             Type: <h:outputText  value="${cart.id}"/><br/>
             Units: <h:outputText value="${cart.units}"/><br/>
         </c:forEach>
-        
+
         <h:form id="bc3"><h:commandButton action="#{customerview.logout()}" value="Logout"/> </h:form>
         <h:messages for="cart" style="color:orange" showSummary="false" showDetail="true"> </h:messages>
-        
+
     </h:body>
 </html>

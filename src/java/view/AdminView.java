@@ -73,7 +73,7 @@ public class AdminView implements Serializable {
         this.new_product_units = new_product_units;
     }
 
-    public void autoRedirect(){
+    public void autoRedirect() {
         if (!signedIn) {
 
             try {
@@ -81,13 +81,12 @@ public class AdminView implements Serializable {
                 FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath() + "/faces/index.xhtml");
             } catch (IOException ex) {
                 ex.printStackTrace();
-            
-        }
+
+            }
         }
     }
-    
+
     public boolean isSignedIn() {
-    
 
         return signedIn;
     }
