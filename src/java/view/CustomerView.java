@@ -16,6 +16,9 @@ import javax.inject.Named;
 import model.Product;
 
 /**
+ * View - CustomerView.java JSF userArea.xhtml using this to handle interaction
+ * with user. Bean scope is a SessionScoped. Named called by JSF is
+ * "customerview".
  *
  * @author guuurris
  */
@@ -45,7 +48,6 @@ public class CustomerView implements Serializable {
     }
 
     public void setCart(List<Product> cart) {
-
         this.cart = cart;
     }
 
@@ -68,14 +70,7 @@ public class CustomerView implements Serializable {
     public boolean isSignedIn() {
         if (!signedIn) {
 
-            /*try {
-
-                FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath() + "/faces/index.xhtml");
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }*/
         }
-
         return signedIn;
     }
 
@@ -106,6 +101,11 @@ public class CustomerView implements Serializable {
         cont = new CustomerController();
     }
 
+    /**
+     * login method and test
+     *
+     * @return
+     */
     public boolean login() {
         signedIn = cont.login(username, password);
 
@@ -145,6 +145,9 @@ public class CustomerView implements Serializable {
         return p;
     }
 
+    /**
+     * method to handle checkoutcart
+     */
     public void checkoutcart() {
 
         try {
@@ -159,9 +162,7 @@ public class CustomerView implements Serializable {
         } catch (Exception ex) {
             FacesContext.getCurrentInstance().addMessage("cart",
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Buy Status", "Product(s) could not be purchased"));
-
         }
-
         cart.clear();
     }
 

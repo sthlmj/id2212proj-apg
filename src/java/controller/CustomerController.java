@@ -6,6 +6,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import model.Customer;
 
+/**
+ * Controller - CustomerController.java Using this business logic to handle
+ * requests from RegisterView.java and CustomerView.java
+ *
+ * @author Joee
+ */
 @Stateless
 public class CustomerController {
 
@@ -17,6 +23,13 @@ public class CustomerController {
         return em;
     }
 
+    /**
+     * registers a user method
+     *
+     * @param username
+     * @param password
+     * @return
+     */
     public boolean register(String username, String password) {
 
         Customer c = em.find(Customer.class, username);
@@ -39,12 +52,22 @@ public class CustomerController {
         return (List<Customer>) result;
     }
 
+    /**
+     * user login method
+     *
+     * @param username
+     * @param password
+     * @return
+     */
     public boolean login(String username, String password) {
         Customer c = em.find(Customer.class, username);
         if (c == null) {
             return false;
         }
 
+        /**
+         * ban a customer method
+         */
         if (c.getPassword().equals(password) && !c.isBanned()) {
 
             return true;
@@ -52,5 +75,4 @@ public class CustomerController {
             return false;
         }
     }
-
 }

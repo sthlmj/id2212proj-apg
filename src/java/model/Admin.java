@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 import java.io.Serializable;
@@ -13,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
+ * Model - Admin.java using this data tier to manage entity(DB).
  *
  * @author guuurris
  */
@@ -24,7 +20,6 @@ public class Admin implements Serializable {
     @Column(name = "id")
     private String id;
 
-    //the ratio value compared to SEK
     @Column(name = "password")
     private String password;
 

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.util.List;
@@ -15,6 +10,8 @@ import javax.transaction.UserTransaction;
 import model.Product;
 
 /**
+ * Controller - ShoppingController.java Using this business logic to handle
+ * requests from CustomerView.java
  *
  * @author joehulden
  */
@@ -33,6 +30,7 @@ public class ShoppingController {
     }
 
     /**
+     * JPQL gets the products and units
      *
      * @param type - product type
      * @param units - number of products
@@ -41,7 +39,7 @@ public class ShoppingController {
     public Product takeProduct(String type, int units) {
 
         System.out.println("takeproduct");
-        // try{
+
         if (em.createQuery("SELECT p FROM Product p WHERE p.product_type=:pType AND p.nr_units>=:NUnits")
                 .setParameter("pType", type)
                 .setParameter("NUnits", units).getResultList().size() > 0) {
@@ -49,13 +47,6 @@ public class ShoppingController {
         } else {
             return null;
         }
-        /*   
-           return (Product) em.createQuery("SELECT p FROM Product p WHERE p.product_type=:pType AND p.nr_units>=:NUnits").setParameter("pType", type).setParameter("NUnits", units).getResultList().get(0);
-        } catch (Exception e){
-            e.printStackTrace();
-            return null;
- 
-        }*/
     }
 
     /**

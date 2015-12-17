@@ -7,6 +7,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * Model - Product.java AdminController.java and ShoppingController.java using
+ * this data tier to manage entity(DB).
+ *
+ * @author Joe
+ */
 @Entity
 public class Product implements Serializable {
 

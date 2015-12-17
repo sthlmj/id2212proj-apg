@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import controller.AdminController;
@@ -18,6 +13,8 @@ import model.Customer;
 import model.Product;
 
 /**
+ * View - AdminView.java JSF adminarea.xhtml using this to handle interaction
+ * with user. Bean scope is a SessionScoped. Named called by JSF is "adminView".
  *
  * @author guuurris
  */
@@ -73,6 +70,9 @@ public class AdminView implements Serializable {
         this.new_product_units = new_product_units;
     }
 
+    /**
+     * isSignedIn redirection
+     */
     public void autoRedirect() {
         if (!signedIn) {
 
@@ -135,6 +135,9 @@ public class AdminView implements Serializable {
         this.product_units = product_units;
     }
 
+    /**
+     * checks if logged in
+     */
     public void login() {
         signedIn = cont.login(userID, password);
         if (!signedIn) {
@@ -145,10 +148,16 @@ public class AdminView implements Serializable {
 
     }
 
+    /**
+     * banning a user(customer)
+     */
     public void customerBann() {
         cont.customerBann(userID, ban);
     }
 
+    /**
+     * addProduct() removeProduct() addProductUnits() handles products
+     */
     public void addProduct() {
         cont.addProduct(new_productID, new_product_units);
         new_productID = "";

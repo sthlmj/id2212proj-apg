@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
+ * Model - Customer.java using this data tier to manage entity(DB).
  *
  * @author guuurris
  */
@@ -20,7 +21,6 @@ public class Customer implements Serializable {
     @Column(name = "id")
     private String userid;
 
-    //the ratio value compared to SEK
     @Column(name = "password")
     private String password;
 
@@ -65,5 +65,4 @@ public class Customer implements Serializable {
     public String toString() {
         return "model.Customer[ id=" + userid + " ]";
     }
-
 }

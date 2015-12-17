@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.util.List;
@@ -14,6 +9,8 @@ import model.Customer;
 import model.Product;
 
 /**
+ * Controller - AdminController.java Using this business logic to handle
+ * requests from AdminView.java
  *
  * @author guuurris
  */
@@ -34,11 +31,16 @@ public class AdminController {
         }
     }
 
+    /**
+     * Admin handles customerBann, addProduct, addProductUnits, removeProduct,
+     *
+     * @param userID
+     * @param banned
+     */
     public void customerBann(String userID, boolean banned) {
         Customer new_customer_state = em.find(Customer.class, userID);
         new_customer_state.setBanned(banned);
         em.merge(new_customer_state);
-        //TODO: gör en unbanned
     }
 
     public void addProduct(String productType, int units) {
@@ -61,6 +63,11 @@ public class AdminController {
         em.remove(to_remove);
     }
 
+    /**
+     * JPQL getting list of customers and list of products
+     *
+     * @return
+     */
     public List<Customer> listCustomer() {
         List result = em.createQuery("SELECT c FROM Customer c").getResultList();
         return (List<Customer>) result;
