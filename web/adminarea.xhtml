@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <style>
-            #bc {
+            #bc1 {
                 position:fixed;
                 top: 50%;
                 left: 50%;
@@ -15,14 +15,41 @@
                 margin-top: -9em; /*set to a negative number 1/2 of your height*/
                 margin-left: -15em; /*set to a negative number 1/2 of your width*/
                 background-color: #FFFFFF;
+                font-family: verdana;
+                font-size: 100%;
+                color: #585858;
+            }
+            #bc2 {
+                position:fixed;
+                top: 50%;
+                left: 50%;
+                width:50em;
+                height:28em;
+                margin-top: -9em; /*set to a negative number 1/2 of your height*/
+                margin-left: -15em; /*set to a negative number 1/2 of your width*/
+                background-color: #FFFFFF;
+                font-family: verdana;
+                font-size: 100%;
+            }
+            #bc3 {
+                position:fixed;
+                top: 20%;
+                left: 88%;
+                width:20em;
+                height:8em;
+                margin-top: -9em; /*set to a negative number 1/2 of your height*/
+                margin-left: -15em; /*set to a negative number 1/2 of your width*/
+                background-color: #FFFFFF;
+                font-family: verdana;
+                font-size: 100%;
             }
         </style>
         <title>Admin Area</title>
     </h:head>
-    <h:body id="bc">
-        Hello Mr Admin 
+    <h:body id="bc2">
+        Hello Mr Admin <br/><br/>
         <f:view>
-            <h:form><h:commandButton action="#{adminView.logout()}" value="logout"/></h:form>
+            <h:form id="bc3"><h:commandButton action="#{adminView.logout()}" value="Logout"/></h:form>
             <h:form id="users">
                 <h:selectOneMenu value="#{adminView.userID}">
                     <c:forEach items="#{adminView.customers}" var="customer">
@@ -30,18 +57,18 @@
                     </c:forEach>             
                 </h:selectOneMenu>
                 Ban(Yes/No): <h:selectBooleanCheckbox value="#{adminView.ban}" ></h:selectBooleanCheckbox>         
-                <h:commandButton action="#{adminView.customerBann()}" value="ApplySettings"/>
+                <h:commandButton action="#{adminView.customerBann()}" value="Apply Settings"/>
             </h:form>    
             <br/>
             <br/>
             Add New Product:
             <br/>
             <h:form>
-                ProductType:                    
+                Product Type:                    
                 <h:inputText value="#{adminView.new_productID}"></h:inputText>
                 Units:
                 <h:inputText value="#{adminView.new_product_units}"></h:inputText>
-                <h:commandButton action="#{adminView.addProduct()}" value="AddProduct"  />
+                <h:commandButton action="#{adminView.addProduct()}" value="Add Product"  />
             </h:form>
             <br/>
             <br/>
@@ -55,7 +82,7 @@
                 </h:selectOneMenu>
                 <h:inputText value="#{adminView.product_units}"></h:inputText>
 
-                <h:commandButton action="#{adminView.addProductUnits()}" value="AddUnits"/>
+                <h:commandButton action="#{adminView.addProductUnits()}" value="Add Units"/>
             </h:form> 
             <br/>
             <br/>
@@ -68,7 +95,7 @@
                     </c:forEach>             
                 </h:selectOneMenu>
 
-                <h:commandButton action="#{adminView.removeProduct()}" value="RemoveProduct"/>
+                <h:commandButton action="#{adminView.removeProduct()}" value="Remove Product"/>
             </h:form> 
 
         </f:view>
