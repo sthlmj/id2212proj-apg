@@ -96,6 +96,6 @@
                 <h:commandButton action="#{adminView.removeProduct()}" value="Remove Product"/>
             </h:form> 
         </f:view>
-        <h:inputHidden >#{customerview.signedIn}</h:inputHidden >
+        <h:inputHidden >#{adminView.autoRedirect()}</h:inputHidden >
     </h:body>
 </html>

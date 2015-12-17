@@ -30,6 +30,7 @@ public class CustomerView implements Serializable {
 
     //Register and login credential
     private String username;
+    private String password;
     private boolean signedIn;
 
     //Shop information
@@ -66,12 +67,12 @@ public class CustomerView implements Serializable {
     public boolean isSignedIn() {
         if (!signedIn) {
 
-            try {
+            /*try {
 
                 FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath() + "/faces/index.xhtml");
             } catch (IOException ex) {
                 ex.printStackTrace();
-            }
+            }*/
         }
 
         return signedIn;
@@ -96,7 +97,7 @@ public class CustomerView implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    private String password;
+    
 
     public CustomerView() {
         signedIn = false;
@@ -107,6 +108,8 @@ public class CustomerView implements Serializable {
 
     public boolean login() {
         signedIn = cont.login(username, password);
+        
+        System.out.println("sign in status: " + signedIn);
         if (!signedIn) {
             //lägger till felmeddelande som kan ses i jsf filen
             FacesContext.getCurrentInstance().addMessage("loginCredentials",
@@ -121,6 +124,19 @@ public class CustomerView implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
     }
 
+    public void autoRedirect(){
+        if (!signedIn) {
+
+            try {
+
+                FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath() + "/faces/index.xhtml");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            
+        }
+        }
+    }
+    
     public Product takeProduct() {
         Product p = cartCont.takeProduct(type, units);
         if (p != null) {
