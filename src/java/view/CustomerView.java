@@ -2,6 +2,7 @@ package view;
 
 import controller.CustomerController;
 import controller.ShoppingController;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +64,16 @@ public class CustomerView implements Serializable {
     }
 
     public boolean isSignedIn() {
+        if (!signedIn) {
+
+            try {
+
+                FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath() + "/faces/index.xhtml");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+
         return signedIn;
     }
 

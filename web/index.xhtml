@@ -4,7 +4,6 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-
     <h:head>
         <style>
             #bc1 {
@@ -48,35 +47,34 @@
         </style>
         <title>Acme Plastic Gnomes!</title>
     </h:head>
+    <div id="bc3">
+        <a href="http://localhost:8080/id2212proj-apg/faces/register.xhtml">REGISTER</a>
+    </div>
     <h:body id="bc1">
         <div>
             Customer Login:<br/><br/>
-        <f:view>
-            <h:form id="loginCredentials">
-                Username:                    
-                <h:inputText id="username" value="#{customerview.username}"></h:inputText>
-                Password:
-                <h:inputText value="#{customerview.password}"></h:inputText>
-                <h:commandButton action="#{customerview.login()}" value="Login"  />
-            </h:form>
-        </f:view>
+            <f:view>
+                <h:form id="loginCredentials">
+                    Username:                    
+                    <h:inputText id="username" value="#{customerview.username}"></h:inputText>
+                    Password:
+                    <h:inputSecret value="#{customerview.password}"></h:inputSecret>
+                    <h:commandButton action="#{customerview.login()}" value="Login"  />
+                </h:form>
+            </f:view>
         </div>
         <br/>
         <div>Admin Login:<br/><br/>
-        <f:view>
-            <h:form id="AdminloginCredentials">
-                Username:                    
-                <h:inputText id="adminUsername" value="#{adminView.userID}"></h:inputText>
-                Password:
-                <h:inputText value="#{adminView.password}"></h:inputText>
-                <h:commandButton action="#{adminView.login()}" value="Login"  />
-            </h:form>
-        </f:view></div>
-        
-        <h:messages for="loginCredentials" style="color:red" showSummary="false" showDetail="true"> </h:messages>  
-        <div id="bc3">
-        <a href="http://localhost:8080/id2212proj-apg/faces/register.xhtml">REGISTER</a>
+            <f:view>
+                <h:form id="AdminloginCredentials">
+                    Username:                    
+                    <h:inputText id="adminUsername" value="#{adminView.userID}"></h:inputText>
+                    Password:
+                    <h:inputSecret value="#{adminView.password}"></h:inputSecret>
+                    <h:commandButton action="#{adminView.login()}" value="Login"  />
+                </h:form>
+            </f:view>
         </div>
+        <h:messages for="loginCredentials" style="color:red" showSummary="false" showDetail="true"> </h:messages>  
     </h:body>
 </html>
-

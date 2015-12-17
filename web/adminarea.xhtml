@@ -47,9 +47,9 @@
         <title>Admin Area</title>
     </h:head>
     <h:body id="bc2">
+        <h:form id="bc3"><h:commandButton action="#{adminView.logout()}" value="Logout"/></h:form>
         Hello Mr Admin <br/><br/>
         <f:view>
-            <h:form id="bc3"><h:commandButton action="#{adminView.logout()}" value="Logout"/></h:form>
             <h:form id="users">
                 <h:selectOneMenu value="#{adminView.userID}">
                     <c:forEach items="#{adminView.customers}" var="customer">
@@ -81,7 +81,6 @@
                     </c:forEach>             
                 </h:selectOneMenu>
                 <h:inputText value="#{adminView.product_units}"></h:inputText>
-
                 <h:commandButton action="#{adminView.addProductUnits()}" value="Add Units"/>
             </h:form> 
             <br/>
@@ -94,11 +93,9 @@
                         <f:selectItem itemValue="#{product.id}" itemLabel="Type: #{product.id} Units:#{product.units}" /> 
                     </c:forEach>             
                 </h:selectOneMenu>
-
                 <h:commandButton action="#{adminView.removeProduct()}" value="Remove Product"/>
             </h:form> 
-
         </f:view>
+        <h:inputHidden >#{customerview.signedIn}</h:inputHidden >
     </h:body>
 </html>
-

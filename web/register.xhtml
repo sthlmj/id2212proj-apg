@@ -46,6 +46,9 @@
         </style>
         <title>Register User</title>
     </h:head>
+    <div id="bc3">
+        <a href="http://localhost:8080/id2212proj-apg/faces/index.xhtml">LOGIN</a>
+    </div>
     <h:body id="bc1">
         User Registration:<br/><br/>
         <f:view>
@@ -53,13 +56,10 @@
                 Username:                    
                 <h:inputText value="#{registerview.username}"></h:inputText>
                 Password:
-                <h:inputText value="#{registerview.password}"></h:inputText>
+                <h:inputSecret value="#{registerview.password}"></h:inputSecret>
                 <h:commandButton action="#{registerview.register()}" value="Register"  />
             </h:form>
         </f:view>
-        <div id="bc3">
-        <a href="http://localhost:8080/id2212proj-apg/faces/index.xhtml">LOGIN</a>
-        </div>
     </h:body>
 </html>
 

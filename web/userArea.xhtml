@@ -46,12 +46,11 @@
             }
         </style>
         <title>User Area</title>
+        <!--
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-        <link rel="stylesheet" href="/resources/demos/style.css"/>
-
-
+        <link rel="stylesheet" href="/resources/demos/style.css"/> -->
     </h:head>
     <h:body id="bc1">
         Hello #{customerview.username} <br/><br/>
@@ -82,6 +81,6 @@
         </c:forEach>
         <h:form id="bc3"><h:commandButton action="#{customerview.logout()}" value="Logout"/></h:form>
         <!-- <h:messages for="cart" style="color:orange" showSummary="false" showDetail="true"> </h:messages> -->
+        <h:inputHidden >#{customerview.signedIn}</h:inputHidden >
     </h:body>
 </html>
-
