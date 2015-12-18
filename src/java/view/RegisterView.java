@@ -6,9 +6,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 /**
- * View - RegisterView.java JSF register.xhtml using this to handle interaction
- * with user. Bean scope is a RequestedScoped. Named called by JSF is
- * "registerview".
+ * View - RegisterView.java JSF register.xhtml using this to handle interaction with user. 
+ * Bean scope is a RequestedScoped. Named called by JSF is "registerview".
+ * 
  *
  * @author guuurris
  */
@@ -47,6 +47,7 @@ public class RegisterView {
     public void setPassword(String password) {
         this.password = password;
     }
+
 
     public RegisterView() {
         this.username = "";

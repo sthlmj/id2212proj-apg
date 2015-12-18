@@ -23,6 +23,7 @@ public class Admin implements Serializable {
     @Column(name = "password")
     private String password;
 
+
     public Admin() {
     }
 
@@ -30,22 +31,42 @@ public class Admin implements Serializable {
         this.id = id;
     }
 
+    /**
+     * Retrieves admin password.
+     * @return 
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Set admin password.
+     * @param password 
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     * Get admin id
+     * @return 
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Set admin id
+     * @param id 
+     */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * String representation of the object
+     * @return 
+     */
     @Override
     public String toString() {
         return "model.Admin[ id=" + id + " ]";

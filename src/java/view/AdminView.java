@@ -156,7 +156,7 @@ public class AdminView implements Serializable {
     }
 
     /**
-     * addProduct() removeProduct() addProductUnits() handles products
+     * Admin ads a product.
      */
     public void addProduct() {
         cont.addProduct(new_productID, new_product_units);
@@ -164,22 +164,39 @@ public class AdminView implements Serializable {
         new_product_units = 0;
     }
 
+    /**
+     * Admin removes a product.
+     */
     public void removeProduct() {
         cont.removeProduct(productToRemove);
     }
 
+    /**
+     * Admin adds product units.
+     */
     public void addProductUnits() {
         cont.addProductUnits(productID, product_units);
     }
 
+    /**
+     * Get customers list for banning. 
+     * @return 
+     */
     public List<Customer> getCustomers() {
         return cont.listCustomer();
     }
 
+    /**
+     * Get product lists.
+     * @return 
+     */
     public List<Product> getProducts() {
         return cont.listProduct();
     }
 
+    /**
+     * Sign out from Admin area.
+     */
     public void logout() {
         signedIn = false;
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();

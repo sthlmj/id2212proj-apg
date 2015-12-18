@@ -50,6 +50,10 @@ public class Product implements Serializable {
         this.nr_units = units;
     }
 
+    /**
+     * String representation of the object
+     * @return 
+     */
     @Override
     public String toString() {
         return "model.Product[ id=" + product_type + " ]";

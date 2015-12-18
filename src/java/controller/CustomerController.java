@@ -18,14 +18,16 @@ public class CustomerController {
     @PersistenceContext(unitName = "id2212proj-apgPU")
     private EntityManager em;
 
-    //Manages Entity
+    /**
+     * Manage entity.
+     * @return 
+     */
     public EntityManager getEntityManager() {
         return em;
     }
 
     /**
-     * registers a user method
-     *
+     * Registers a user method if customer c is not used. 
      * @param username
      * @param password
      * @return

@@ -20,6 +20,12 @@ public class AdminController {
     @PersistenceContext(unitName = "id2212proj-apgPU")
     private EntityManager em;
 
+    /**
+     * Logs in admin
+     * @param userID
+     * @param password
+     * @return 
+     */
     public boolean login(String userID, String password) {
         Admin admin = em.find(Admin.class, userID);
         if (admin == null) {
@@ -32,8 +38,8 @@ public class AdminController {
     }
 
     /**
-     * Admin handles customerBann, addProduct, addProductUnits, removeProduct,
-     *
+     * 
+     * Ban customer aka. user.
      * @param userID
      * @param banned
      */
@@ -43,10 +49,20 @@ public class AdminController {
         em.merge(new_customer_state);
     }
 
+    /**
+     * Add new product.
+     * @param productType
+     * @param units 
+     */
     public void addProduct(String productType, int units) {
         em.persist(new Product(productType, units));
     }
 
+    /**
+     * Adjust product unit.
+     * @param productID
+     * @param increaseBy 
+     */
     public void addProductUnits(String productID, int increaseBy) {
         Product product = em.find(Product.class, productID);
 
@@ -58,14 +74,17 @@ public class AdminController {
         em.merge(product);
     }
 
+    /**
+     * Remove a product.
+     * @param productID 
+     */
     public void removeProduct(String productID) {
         Product to_remove = em.find(Product.class, productID);
         em.remove(to_remove);
     }
 
     /**
-     * JPQL getting list of customers and list of products
-     *
+     * List customers. JPQL
      * @return
      */
     public List<Customer> listCustomer() {
@@ -73,6 +92,10 @@ public class AdminController {
         return (List<Customer>) result;
     }
 
+    /**
+     * List products. JPQL
+     * @return 
+     */
     public List<Product> listProduct() {
         List result = em.createQuery("SELECT p FROM Product p").getResultList();
         return (List<Product>) result;

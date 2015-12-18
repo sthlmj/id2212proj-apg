@@ -119,11 +119,17 @@ public class CustomerView implements Serializable {
         return signedIn;
     }
 
+    /**
+     * Logout from customer view.
+     */
     public void logout() {
         signedIn = false;
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
     }
 
+    /**
+     * Redirects if not signed in.
+     */
     public void autoRedirect() {
         if (!signedIn) {
 
@@ -137,6 +143,10 @@ public class CustomerView implements Serializable {
         }
     }
 
+    /**
+     * Add To Cart button calls this method.
+     * @return 
+     */
     public Product takeProduct() {
         Product p = cartCont.takeProduct(type, units);
         if (p != null) {
@@ -146,7 +156,7 @@ public class CustomerView implements Serializable {
     }
 
     /**
-     * method to handle checkoutcart
+     * Method to handle checkoutcart.
      */
     public void checkoutcart() {
 
@@ -166,6 +176,10 @@ public class CustomerView implements Serializable {
         cart.clear();
     }
 
+    /**
+     * Lists all products.
+     * @return 
+     */
     public List<Product> allProducts() {
         return cartCont.listProducts();
     }

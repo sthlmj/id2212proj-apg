@@ -24,7 +24,10 @@ public class ShoppingController {
     @Resource
     SessionContext context;
 
-    //Manages Entity
+    /**
+     * Entity manager.
+     * @return 
+     */
     public EntityManager getEntityManager() {
         return em;
     }
